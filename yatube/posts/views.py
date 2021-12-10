@@ -7,4 +7,9 @@ def index(request):
     return render(request, template)
 
 def group_posts(request):
-    return HttpResponse('Посты')
+    template_group_posts = 'posts/group_list.html'
+    return render(request, template_group_posts)
+
+def show_base(request):
+    template_base = 'templates/base.html'
+    return render(request, template_base)

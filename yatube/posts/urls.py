@@ -20,4 +20,5 @@ from . import views
 urlpatterns = [
     path('group/1/', views.group_posts),
     path('', views.index),
+    path('templates/base/', views.show_base),
 ]
