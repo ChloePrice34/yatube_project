@@ -17,8 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 
+app_name = 'posts'
+
 urlpatterns = [
-    path('group/1/', views.group_posts),
-    path('', views.index),
-    path('templates/base/', views.show_base),
+    path('group/1/', views.group_posts, name = 'group_posts'),
+    path('', views.index, name = 'index'),
 ]
