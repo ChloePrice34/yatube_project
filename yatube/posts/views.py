@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Post
 
@@ -10,9 +9,8 @@ def index(request):
     return render(request, 'posts/index.html', context) 
     
 
-def group_posts(request):
-    template_group_posts = 'posts/group_list.html'
-    return render(request, template_group_posts, context)
+def group_posts(request, pk):
+    return render(request, 'posts/group_list.html', context)
 
 context = {
     "title" : "Это главная страница проекта Yatube",

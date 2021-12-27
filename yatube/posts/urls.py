@@ -1,5 +1,4 @@
 """yatube URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
 Examples:
@@ -20,6 +19,6 @@ from . import views
 app_name = 'posts'
 
 urlpatterns = [
-    path('group/1/', views.group_posts, name = 'group_posts'),
     path('', views.index, name = 'index'),
+    path('group/<slug:pk>/', views.group_posts, name = 'group_posts'),
 ]
