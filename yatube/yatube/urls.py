@@ -1,8 +1,7 @@
 from django.contrib import admin
-from django.urls import path, include
-from posts import views
+from django.urls import include, path
 
 urlpatterns = [
+    path('', include('posts.urls', namespace='posts')),
     path('admin/', admin.site.urls),
-    path('', include('posts.urls', namespace = 'posts'))
 ]

@@ -1,35 +1,28 @@
 {% extends 'base.html' %}
-{% load static %}
-<!DOCTYPE html>
-<html lang="ru">
-  <head>    
-  </head>
-  <body>
-    <header>
-      {% include 'includes/header.html' %}      
-    </header>
-    <main> 
-      <div class="container py-5">
-        {% block content %}
-        {% for post in posts %}
+{% block title %}
+  Главная страница
+{% endblock %}      
+{% block content %} 
+  <div class="container py-5">     
+  <h1>Последние обновления на сайте</h1>
+      {% for post in posts %}
+      <article>
         <ul>
           <li>
             Автор: {{ post.author.get_full_name }}
           </li>
           <li>
-            Дата публикации: {{ post.pub_date|date:"d E Y" }}
+            Дата публикации: {{post.pub_date|date:"j E Y"}}
           </li>
-        </ul>
-        <p>{{ post.text }}</p>    
-        <a href="">все записи группы</a>
+        </ul>      
+        <p>
+          {{ post.text|linebreaks }}
+        </p>
+        {% if post.group is not None %}
+          <a href="{% url 'posts:group_posts' post.group.slug %}">Все записи группы</a>
+        {% endif %}  
         {% if not forloop.last %}<hr>{% endif %}
+      </article>
       {% endfor %}
-        {% endblock %}   
-          <a href="{% url 'group_posts' %}">все записи группы</a>
-        </article>
-      </div>  
-    </main>     
-    <footer class="border-top text-center py-3">
-      {% include 'includes/footer.html' %}
-    </footer>
-  </body>
+  </div>
+{% endblock %}

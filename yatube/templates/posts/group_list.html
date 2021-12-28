@@ -1,24 +1,26 @@
 {% extends 'base.html' %}
-{% load static %}
-<!DOCTYPE html> <!-- Используется html 5 версии -->
-<html lang="ru"> <!-- Язык сайта - русский -->
-  <head>    
-  </head>
-  <body>
-    <header>
-      {% include 'includes/header.html' %}      
-    </header>
-    <main> 
-      <!-- класс py-5 создает отступы сверху и снизу блока -->
-      <div class="container py-5">
-        {% block content %}
-          <h1>{{ posts_title }}</h1>
-        {% endblock %}   
-          <a href="group_list.html">все записи группы</a>
-        </article>
-      </div>  
-    </main>     
-    <footer class="border-top text-center py-3">
-      {% include 'includes/footer.html' %}
-    </footer>
-  </body>
+{% block title %}
+  Записи сообщества {{ group.title }}
+{% endblock%}  
+{% block content %}
+  <div class="container py-5">     
+    <h1>{{ group.title }}</h1>
+    <p>{{ group.description }}</p>
+    {% for post in posts %}
+      <article>
+        <ul>
+          <li>
+            Автор: {{ post.author.get_full_name }}
+          </li>
+          <li>
+            Дата публикации: {{post.pub_date|date:"j E Y"}}
+          </li>
+        </ul>      
+        <p>
+          {{ post.text|linebreaks }}
+        </p>
+      </article>
+      {% if not forloop.last %}<hr>{% endif %}
+    {% endfor %}
+  </div>
+{% endblock %}
